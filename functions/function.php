@@ -5,66 +5,30 @@
 ?>
 
 <?php
-
     $connection = new mysqli('localhost', 'root', '', 'diagnostic');
-
     $error_flag = 0;
     $result;
     if ($connection->connect_error) {
         die('connection failed: '.$connection->connect_error);
     }
 
-    function secure($unsafe_data)
-    {
-        return htmlentities($unsafe_data);
-    }
+    // function secure($unsafe_data)
+    // {
+    //     return htmlentities($unsafe_data);
+    // }
 
-    function login($email_id_unsafe, $password_unsafe, $table = 'users')
+    function login($email=NULL, $password=NULL, $table = NULL)
     {
         global $connection;
-
-        $email_id = secure($email_id_unsafe);
-        $password = secure($password_unsafe);
-
-        $sql = "SELECT COUNT(*) FROM $table WHERE email = '$email_id' AND password = '$password';";
-
+        $sql = "SELECT COUNT(*) FROM $table WHERE email = '$email' AND password = '$password'";
         $result = $connection->query($sql);
-
         $num_rows = (int) $result->fetch_array()['0'];
-
         if ($num_rows > 1) {
-            //send email to sysadmin that my site has been hacked
-              return 0;
-        } elseif ($num_rows == 0) {
-            echo status('no-match');
-
-            return 0;
-        } else {
-            echo "<div class='alert alert-success'> <strong>Well done!</strong> Logged In</div>";
-            $_SESSION['username'] = $email_id;
-
-            if ($table == 'admin') {
-                $_SESSION['user-type'] = 'admin';
-            }
-
-            if ($table == 'users' || $table == 'doctors' || $table == 'clerks') {
-                $sql = "SELECT fullname FROM $table WHERE email = '$email_id' AND password = '$password';";
-
-                $result = $connection->query($sql);
-
-                $fullname = $result->fetch_array()['fullname'];
-                $_SESSION['fullname'] = $fullname;
-                if ($table == 'users') {
-                    $_SESSION['user-type'] = 'normal';
-                } elseif ($table == 'clerks') {
-                    $_SESSION['user-type'] = 'clerk';
-                } else {
-                    $_SESSION['user-type'] = 'doctor';
-                }
-            }
-
-            return 1;
+                    return 0;
         }
+       else {
+            return 1;
+        }        
     }
 
     function register($email_id_unsafe, $password_unsafe, $full_name_unsafe, $speciality_unsafe = 'doctor', $table = 'users')

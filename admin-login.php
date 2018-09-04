@@ -1,3 +1,24 @@
+<?php
+session_start();
+include('functions/function.php');
+?>
+<?php 
+//if press the login button
+ if(isset($_POST['admin_login'])){
+  $email=trim($_POST['email']);
+  $password=md5($_POST['password']);
+      $is_login= login($email,$password,"users_info");
+      if($is_login==1){
+        $_SESSION['email']=$email;
+
+        echo '<script type="text/javascript"> window.location = "admin/admin_dashboard.php" </script>';
+      }
+      else{
+        $_SESSION['error_message']="Email or Password is incorrect";
+      }
+    }
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,15 +37,13 @@
   <link rel="stylesheet" href="admin/dist/css/AdminLTE.min.css">
   <link rel="stylesheet" href="admin/dist/css/adminstyle.css">
   <!-- iCheck -->
-  <link rel="stylesheet" href="admin/plugins/iCheck/square/blue.css">
-
+  <link rel="stylesheet" href="admin/plugins/iCheck/square/blue.css"> 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
-
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
@@ -38,13 +57,13 @@
       <div class="login-box-body">
         <p class="login-box-msg">Sign in to start your session</p>
 
-        <form action="login_process.php" method="post">
+        <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="POST">
           <div class="form-group has-feedback">
-            <input type="email" class="form-control" placeholder="Email">
+            <input type="email" name="email" class="form-control" placeholder="Email" required="">
             <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
           </div>
           <div class="form-group has-feedback">
-            <input type="password" class="form-control" placeholder="Password">
+            <input type="password" name="password" class="form-control" placeholder="Password" required="">
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
           </div>
           <div class="row">
@@ -57,7 +76,7 @@
             </div>
             <!-- /.col -->
             <div class="col-xs-4">
-              <button type="submit" class="btn btn-primary btn-block btn-flat" name="">Sign In</button>
+              <button type="submit" class="btn btn-primary btn-block btn-flat" name="admin_login">Sign In</button>
             </div>
             <!-- /.col -->
           </div>
