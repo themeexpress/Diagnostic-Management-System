@@ -1,35 +1,50 @@
 <?php
-    if (!isset($_SESSION)) {
-        session_start();
-    }
-?>
+//set My PDO connection Here
+$hostname = "localhost";
+$db_name = "diagnostic";
+$db_user = "root";
+$db_password = "";
+define('HOST_NAME', $hostname);
+try {
+    $db = new PDO("mysql:host=" . HOST_NAME . ";dbname=$db_name", $db_user, $db_password);
+   
+} catch (PDOException $e) {
+    echo $e->getMessage();
+}
 
-<?php
-    $connection = new mysqli('localhost', 'root', '', 'diagnostic');
-    $error_flag = 0;
-    $result;
-    if ($connection->connect_error) {
-        die('connection failed: '.$connection->connect_error);
-    }
+/*Admin login check*/
+function check_login($table = NULL, $email = NULL, $password = NULL) {
+    global $db;
+    $sql = "SELECT * FROM $table WHERE email='$email' and password='$password' ";
 
-    // function secure($unsafe_data)
-    // {
-    //     return htmlentities($unsafe_data);
-    // }
+    $stmt = $db->prepare($sql);
+    $stmt->execute();
+    $result = $stmt->rowCount();
+    return $result;
+}
+//Get Admin data to set session data
 
-    function login($email=NULL, $password=NULL, $table = NULL)
-    {
-        global $connection;
-        $sql = "SELECT COUNT(*) FROM $table WHERE email = '$email' AND password = '$password'";
-        $result = $connection->query($sql);
-        $num_rows = (int) $result->fetch_array()['0'];
-        if ($num_rows > 1) {
-                    return 0;
-        }
-       else {
-            return 1;
-        }        
-    }
+function get_data($table = NULL, $Where = NULL, $value = NULL) {
+    global $db;
+    $sql = "SELECT * FROM $table WHERE $Where='$value' ";
+    $stmt = $db->prepare($sql);
+    $stmt->execute();
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $result;
+}
+    
+
+
+
+
+
+
+
+
+
+
+
+
 
     function register($email_id_unsafe, $password_unsafe, $full_name_unsafe, $speciality_unsafe = 'doctor', $table = 'users')
     {

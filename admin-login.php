@@ -1,24 +1,3 @@
-<?php
-session_start();
-include('functions/function.php');
-?>
-<?php 
-//if press the login button
- if(isset($_POST['admin_login'])){
-  $email=trim($_POST['email']);
-  $password=md5($_POST['password']);
-      $is_login= login($email,$password,"users_info");
-      if($is_login==1){
-        $_SESSION['email']=$email;
-
-        echo '<script type="text/javascript"> window.location = "admin/admin_dashboard.php" </script>';
-      }
-      else{
-        $_SESSION['error_message']="Email or Password is incorrect";
-      }
-    }
-
-?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -57,7 +36,7 @@ include('functions/function.php');
       <div class="login-box-body">
         <p class="login-box-msg">Sign in to start your session</p>
 
-        <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="POST">
+        <form action="login_process.php" method="POST">
           <div class="form-group has-feedback">
             <input type="email" name="email" class="form-control" placeholder="Email" required="">
             <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
