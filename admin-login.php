@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,6 +38,14 @@
       <!-- /.login-logo -->
       <div class="login-box-body">
         <p class="login-box-msg">Sign in to start your session</p>
+        <?php if (isset($_SESSION['msg'])): ?>
+                        <div class="alert alert-warning">
+                            <?php echo $_SESSION['msg']; ?>
+                        </div>
+                        <?php
+                        unset($_SESSION["msg"]);
+                    endif;
+                    ?>
 
         <form action="login_process.php" method="POST">
           <div class="form-group has-feedback">

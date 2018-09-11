@@ -22,6 +22,7 @@ function check_login($table = NULL, $email = NULL, $password = NULL) {
     $result = $stmt->rowCount();
     return $result;
 }
+
 //Get Admin data to set session data
 
 function get_data($table = NULL, $Where = NULL, $value = NULL) {
@@ -32,6 +33,12 @@ function get_data($table = NULL, $Where = NULL, $value = NULL) {
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     return $result;
 }
+
+//redirect function
+
+function redirect_to($location){
+            header('Location:'.$location);
+        }
     
 
 
