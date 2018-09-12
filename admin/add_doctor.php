@@ -21,6 +21,14 @@
           <!-- general form elements -->
           <div class="box box-primary">
             <div class="box-header with-border">
+            <!--Session Message-->
+            <?php if (isset($_SESSION['msg'])): ?>
+                <div class="alert alert-warning">
+                  <?php echo $_SESSION['msg']; ?>
+                </div>
+             <?php    unset($_SESSION["msg"]);
+              endif;
+              ?>
               <h3 class="box-title">Add Doctor Information</h3>
             </div>
             <!-- /.box-header -->
