@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
+-- version 4.8.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 11, 2018 at 06:18 AM
--- Server version: 10.1.25-MariaDB
--- PHP Version: 7.0.21
+-- Generation Time: Sep 12, 2018 at 09:20 AM
+-- Server version: 10.1.32-MariaDB
+-- PHP Version: 7.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -21,6 +21,28 @@ SET time_zone = "+00:00";
 --
 -- Database: `diagnostic`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin_users`
+--
+
+CREATE TABLE `admin_users` (
+  `admin_id` int(11) NOT NULL,
+  `fullname` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `role` int(11) NOT NULL DEFAULT '2',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `admin_users`
+--
+
+INSERT INTO `admin_users` (`admin_id`, `fullname`, `email`, `password`, `role`, `created_at`) VALUES
+(1, 'Super Admin', 'dadmin@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 2, '2018-09-12 13:03:04');
 
 -- --------------------------------------------------------
 
@@ -57,11 +79,28 @@ CREATE TABLE `clerks` (
 --
 
 CREATE TABLE `doctors` (
-  `email` varchar(30) NOT NULL,
-  `password` varchar(30) NOT NULL,
-  `fullname` varchar(30) NOT NULL,
-  `speciality` varchar(30) NOT NULL
+  `doctor_id` int(11) NOT NULL,
+  `fullname` varchar(255) NOT NULL,
+  `designation` varchar(200) NOT NULL,
+  `degree` varchar(200) NOT NULL,
+  `specialty` varchar(200) NOT NULL,
+  `work_place` varchar(200) NOT NULL,
+  `email_address` varchar(200) NOT NULL,
+  `phone` varchar(200) NOT NULL,
+  `chamber_address` text NOT NULL,
+  `profile_pic` varchar(200) NOT NULL,
+  `apoint_time` varchar(200) NOT NULL,
+  `limit_of_patient` int(11) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `doctors`
+--
+
+INSERT INTO `doctors` (`doctor_id`, `fullname`, `designation`, `degree`, `specialty`, `work_place`, `email_address`, `phone`, `chamber_address`, `profile_pic`, `apoint_time`, `limit_of_patient`, `created_at`) VALUES
+(1, 'Shek Lutfor Rahman', 'Professor', 'MBBS, FRCS, Medicine', 'Medicine and Child', 'Dhaka Medical Hospital', 'lutfor@gmail.com', '172346874', 'Green Hospital', 'che anonymous.jpg', '8 pm', 34, '2018-09-12 12:07:55'),
+(2, 'Dr. Ajijur Rahman', 'Professor', 'MBBS, FRCS in America', 'Heart Disease ', 'Dhaka Medical Hospital', 'ajij420@gmail.com', '172356484', 'Square Hospital', 'che anonymous.jpg', '8 pm', 25, '2018-09-12 12:21:28');
 
 -- --------------------------------------------------------
 
@@ -98,11 +137,17 @@ CREATE TABLE `users_info` (
 --
 
 INSERT INTO `users_info` (`user_id`, `fullname`, `email`, `password`, `role`, `date`) VALUES
-(1, 'dadmin', 'dadmin@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 1, '2018-09-04 23:49:54');
+(2, 'Habib Wahid', 'habib@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 2, '2018-09-12 13:10:57');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `admin_users`
+--
+ALTER TABLE `admin_users`
+  ADD PRIMARY KEY (`admin_id`);
 
 --
 -- Indexes for table `appointments`
@@ -120,7 +165,7 @@ ALTER TABLE `clerks`
 -- Indexes for table `doctors`
 --
 ALTER TABLE `doctors`
-  ADD UNIQUE KEY `email` (`email`);
+  ADD PRIMARY KEY (`doctor_id`);
 
 --
 -- Indexes for table `patient_info`
@@ -139,20 +184,35 @@ ALTER TABLE `users_info`
 --
 
 --
+-- AUTO_INCREMENT for table `admin_users`
+--
+ALTER TABLE `admin_users`
+  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `appointments`
 --
 ALTER TABLE `appointments`
   MODIFY `appointment_no` int(30) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `doctors`
+--
+ALTER TABLE `doctors`
+  MODIFY `doctor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `patient_info`
 --
 ALTER TABLE `patient_info`
   MODIFY `patient_Id` int(20) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `users_info`
 --
 ALTER TABLE `users_info`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;COMMIT;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
