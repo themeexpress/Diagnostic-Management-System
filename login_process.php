@@ -34,7 +34,6 @@ if (isset($_POST['user_login'])) {
     $dashboard='http://localhost/Diagnostic-Management-System/users/user_dashboard.php';    
    //if condtion true then redirect
     header('Location: '.$dashboard);
-
   }else{
     $_SESSION['msg'] = 'Email or Password Wrong';
         redirect_to('login.php');

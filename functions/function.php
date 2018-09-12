@@ -34,6 +34,17 @@ function get_data($table = NULL, $Where = NULL, $value = NULL) {
     return $result;
 }
 
+/**Get All doctor information */
+function get_doctors_info($doctors){
+    global $db;
+    $sql = "SELECT * FROM $doctors WHERE status=1 ";
+    $stmt = $db->prepare($sql);
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $result;
+}
+
+
 //redirect function
 
 function redirect_to($location){
