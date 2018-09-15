@@ -29,7 +29,7 @@
                 <p><?php echo $doctors['phone'];?></p>
                 <p><?php echo $doctors['email_address'];?></p>
             </td>
-            <td><a href="#">Appointment</a> | <a href="#">Details</a> | <a href="#">Reviews</a></td>
+            <td><a href="login.php" class="btn btn-primary">Appointment</a> | <a href="#" class="btn btn-primary">Details</a> | <a href="#" class="btn btn-primary">Reviews</a></td>
         
         </tr>
         
