@@ -22,29 +22,12 @@ if(isset($_POST['admin_login'])){
   }
 }
 
-//User Login 
-if (isset($_POST['user_login'])) {
-  $email      = $_POST['email'];
-  $password   = md5($_POST['password']);
-  $user_data = check_login('users_info',$email,$password);
-  if($user_data>0){
-    $data=get_data('users_info','email',$email);
-    // Set Session
-    $_SESSION['fullname'] = $data['fullname']; 
-    $dashboard='http://localhost/Diagnostic-Management-System/users/user_dashboard.php';    
-   //if condtion true then redirect
-    header('Location: '.$dashboard);
-  }else{
-    $_SESSION['msg'] = 'Email or Password Wrong';
-        redirect_to('login.php');
-  }
-}
-
 //User Register
 
 if(isset($_POST['register_user'])){
   $fullname=$_POST['fullname'];
   $email=$_POST['email'];
+  $phone=$_POST['phone'];
   $pass=$_POST['password'];
   $re_pass=$_POST['re_password'];
   if($pass!=$re_pass){
@@ -53,9 +36,10 @@ if(isset($_POST['register_user'])){
   }
   else{
   $password=md5($_POST['password']);
-  $pdo = $db->prepare('INSERT INTO users_info (fullname,email,password) 
-  VALUES (:fullname,:email,:password)');
+  $pdo = $db->prepare('INSERT INTO users_info (fullname,phone,email,password) 
+  VALUES (:fullname,:phone,:email,:password)');
   $pdo->bindParam(':fullname', $fullname, PDO::PARAM_STR);
+  $pdo->bindParam(':phone', $phone, PDO::PARAM_STR);
   $pdo->bindParam(':email', $email, PDO::PARAM_STR);
   $pdo->bindParam(':password', $password, PDO::PARAM_STR);    
   $pdo->execute();
