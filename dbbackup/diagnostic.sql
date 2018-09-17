@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.0.1
+-- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 12, 2018 at 09:20 AM
--- Server version: 10.1.32-MariaDB
--- PHP Version: 7.0.30
+-- Generation Time: Sep 17, 2018 at 10:04 PM
+-- Server version: 10.1.25-MariaDB
+-- PHP Version: 7.0.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -53,24 +53,22 @@ INSERT INTO `admin_users` (`admin_id`, `fullname`, `email`, `password`, `role`, 
 CREATE TABLE `appointments` (
   `appointment_no` int(30) NOT NULL,
   `patient_id` int(30) NOT NULL,
-  `speciality` varchar(30) NOT NULL,
-  `medical_condition` text,
-  `doctors_suggestion` varchar(30) DEFAULT NULL,
-  `payment_amount` int(199) DEFAULT NULL,
-  `case_closed` varchar(10) DEFAULT NULL
+  `doctor_id` int(11) NOT NULL,
+  `disease` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  `appoint_date` datetime NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `clerks`
+-- Dumping data for table `appointments`
 --
 
-CREATE TABLE `clerks` (
-  `email` varchar(30) NOT NULL,
-  `password` varchar(30) NOT NULL,
-  `fullname` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='stores information about clerk';
+INSERT INTO `appointments` (`appointment_no`, `patient_id`, `doctor_id`, `disease`, `description`, `appoint_date`, `created_at`) VALUES
+(1, 5, 1, 'Chest Pain', 'Chest Pain form many days', '2018-09-20 00:00:00', '2018-09-17 22:20:33'),
+(2, 6, 1, 'Fever', 'Fever from 5 days', '2018-09-22 00:00:00', '2018-09-18 00:17:00'),
+(3, 6, 1, 'Chest Pain', 'chest pain and joint pain', '2018-09-28 00:00:00', '2018-09-18 00:18:53'),
+(4, 6, 1, 'Chest Pain 4', 'Chest Pain 4', '2018-09-27 00:00:00', '2018-09-18 00:22:54');
 
 -- --------------------------------------------------------
 
@@ -91,31 +89,17 @@ CREATE TABLE `doctors` (
   `profile_pic` varchar(200) NOT NULL,
   `apoint_time` varchar(200) NOT NULL,
   `limit_of_patient` int(11) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `status` tinyint(4) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `doctors`
 --
 
-INSERT INTO `doctors` (`doctor_id`, `fullname`, `designation`, `degree`, `specialty`, `work_place`, `email_address`, `phone`, `chamber_address`, `profile_pic`, `apoint_time`, `limit_of_patient`, `created_at`) VALUES
-(1, 'Shek Lutfor Rahman', 'Professor', 'MBBS, FRCS, Medicine', 'Medicine and Child', 'Dhaka Medical Hospital', 'lutfor@gmail.com', '172346874', 'Green Hospital', 'che anonymous.jpg', '8 pm', 34, '2018-09-12 12:07:55'),
-(2, 'Dr. Ajijur Rahman', 'Professor', 'MBBS, FRCS in America', 'Heart Disease ', 'Dhaka Medical Hospital', 'ajij420@gmail.com', '172356484', 'Square Hospital', 'che anonymous.jpg', '8 pm', 25, '2018-09-12 12:21:28');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `patient_info`
---
-
-CREATE TABLE `patient_info` (
-  `patient_Id` int(20) NOT NULL,
-  `full_name` varchar(20) NOT NULL,
-  `DOB` int(10) NOT NULL,
-  `weight` int(8) NOT NULL,
-  `phone_no` varchar(30) NOT NULL,
-  `address` varchar(260) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='patient';
+INSERT INTO `doctors` (`doctor_id`, `fullname`, `designation`, `degree`, `specialty`, `work_place`, `email_address`, `phone`, `chamber_address`, `profile_pic`, `apoint_time`, `limit_of_patient`, `created_at`, `status`) VALUES
+(1, 'Shek Lutfor Rahman', 'Professor', 'MBBS, FRCS, Medicine', 'Medicine and Child', 'Dhaka Medical Hospital', 'lutfor@gmail.com', '172346874', 'Green Hospital', 'che anonymous.jpg', '8 pm', 34, '2018-09-12 12:07:55', 1),
+(2, 'Dr. Ajijur Rahman', 'Professor', 'MBBS, FRCS in America', 'Heart Disease ', 'Dhaka Medical Hospital', 'ajij420@gmail.com', '172356484', 'Square Hospital', 'che anonymous.jpg', '8 pm', 25, '2018-09-12 12:21:28', 1);
 
 -- --------------------------------------------------------
 
@@ -126,6 +110,7 @@ CREATE TABLE `patient_info` (
 CREATE TABLE `users_info` (
   `user_id` int(11) NOT NULL,
   `fullname` varchar(255) NOT NULL,
+  `phone` varchar(50) NOT NULL,
   `email` varchar(200) NOT NULL,
   `password` varchar(255) NOT NULL,
   `role` tinyint(4) NOT NULL DEFAULT '2',
@@ -136,8 +121,12 @@ CREATE TABLE `users_info` (
 -- Dumping data for table `users_info`
 --
 
-INSERT INTO `users_info` (`user_id`, `fullname`, `email`, `password`, `role`, `date`) VALUES
-(2, 'Habib Wahid', 'habib@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 2, '2018-09-12 13:10:57');
+INSERT INTO `users_info` (`user_id`, `fullname`, `phone`, `email`, `password`, `role`, `date`) VALUES
+(2, 'Habib Wahid', '', 'habib@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 2, '2018-09-12 13:10:57'),
+(3, 'Galib Hossain', '', 'galib@gmail.com', '123456', 2, '2018-09-12 23:45:38'),
+(4, 'Habib Mohamod', '', 'habib@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 2, '2018-09-12 23:47:51'),
+(5, 'Ajijul Haque', '01723276069', 'ajijul@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 2, '2018-09-16 00:54:03'),
+(6, 'Imran Hossain', '1723276089', 'kkislam33@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 2, '2018-09-18 00:15:44');
 
 --
 -- Indexes for dumped tables
@@ -156,22 +145,10 @@ ALTER TABLE `appointments`
   ADD PRIMARY KEY (`appointment_no`);
 
 --
--- Indexes for table `clerks`
---
-ALTER TABLE `clerks`
-  ADD UNIQUE KEY `email` (`email`);
-
---
 -- Indexes for table `doctors`
 --
 ALTER TABLE `doctors`
   ADD PRIMARY KEY (`doctor_id`);
-
---
--- Indexes for table `patient_info`
---
-ALTER TABLE `patient_info`
-  ADD PRIMARY KEY (`patient_Id`);
 
 --
 -- Indexes for table `users_info`
@@ -188,31 +165,21 @@ ALTER TABLE `users_info`
 --
 ALTER TABLE `admin_users`
   MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
 --
 -- AUTO_INCREMENT for table `appointments`
 --
 ALTER TABLE `appointments`
-  MODIFY `appointment_no` int(30) NOT NULL AUTO_INCREMENT;
-
+  MODIFY `appointment_no` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `doctors`
 --
 ALTER TABLE `doctors`
   MODIFY `doctor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `patient_info`
---
-ALTER TABLE `patient_info`
-  MODIFY `patient_Id` int(20) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `users_info`
 --
 ALTER TABLE `users_info`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-COMMIT;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

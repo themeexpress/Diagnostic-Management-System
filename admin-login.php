@@ -46,7 +46,7 @@ session_start();
                         unset($_SESSION["msg"]);
                     endif;
                     ?>
-        <form action="login_process.php" method="POST">
+        <form action="admin_login_process.php" method="POST">
           <div class="form-group has-feedback">
             <input type="email" name="email" class="form-control" placeholder="Email" required="">
             <span class="glyphicon glyphicon-envelope form-control-feedback"></span>

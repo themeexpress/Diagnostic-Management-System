@@ -45,7 +45,7 @@ if(!isset($_SESSION)){
 
     <p class="login-box-msg">Register a new membership</p>
 
-    <form action="login_process.php" method="post">
+    <form action="register_process.php" method="post">
       <div class="form-group has-feedback">
         <input type="text" class="form-control" name="fullname" placeholder="Full name" require>
         <span class="glyphicon glyphicon-user form-control-feedback"></span>

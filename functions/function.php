@@ -34,10 +34,33 @@ function get_data($table = NULL, $Where = NULL, $value = NULL) {
     return $result;
 }
 
-/**Get All doctor information */
+
+/**Get Actinve doctor information */
 function get_doctors_info($doctors){
     global $db;
     $sql = "SELECT * FROM $doctors WHERE status=1 ";
+    $stmt = $db->prepare($sql);
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $result;
+}
+//Get All doctor information
+function get_all_doctors($doctors) {
+    global $db;
+    $sql = "SELECT * FROM $doctors";
+    $stmt = $db->prepare($sql);
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $result;
+}
+
+function appointments_info(){
+    global $db;
+    $sql = "SELECT doctors.doctor_id,doctors.fullname,doctors.email_address,users_info.user_id, users_info.fullname,users_info.phone,
+    appointments.disease, appointments.description,appointments.appoint_date
+    FROM doctors,appointments,users_info
+    WHERE doctors.doctor_id=appointments.doctor_id AND
+    appointments.patient_id=users_info.user_id";
     $stmt = $db->prepare($sql);
     $stmt->execute();
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
