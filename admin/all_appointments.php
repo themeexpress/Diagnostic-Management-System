@@ -57,10 +57,12 @@
                             <tfoot>
                                 <tr>
                                     <th>SL.No.</th>
-                                    <th>Full Name</th>
-                                    <th>Email(s)</th>
-                                    <th>Profile Picture</th>
-                                    <th>Status</th>
+                                    <th>Doctor Name</th>
+                                    <th>Email</th>
+                                    <th>Patient Name</th>
+                                    <th>Patient Phone</th>
+                                    <th>Apoint Date</th>
+                                    <th>Disease</th>
                                     <th>Actions</th>
                                 </tr>
                             </tfoot>

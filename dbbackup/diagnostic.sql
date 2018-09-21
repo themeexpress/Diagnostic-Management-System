@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 17, 2018 at 10:04 PM
+-- Generation Time: Sep 21, 2018 at 10:50 AM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 7.0.21
 
@@ -104,6 +104,30 @@ INSERT INTO `doctors` (`doctor_id`, `fullname`, `designation`, `degree`, `specia
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `pathology_test_info`
+--
+
+CREATE TABLE `pathology_test_info` (
+  `test_id` int(11) NOT NULL,
+  `test_name` varchar(200) NOT NULL,
+  `description` text NOT NULL,
+  `reporting_time` varchar(200) NOT NULL,
+  `test_price` int(11) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pathology_test_info`
+--
+
+INSERT INTO `pathology_test_info` (`test_id`, `test_name`, `description`, `reporting_time`, `test_price`, `created_at`) VALUES
+(1, 'Anal Smear ', 'Specimen Collection:	Place specimen into Thin Prep vial or immediately apply the specimen to the slide(s) and fix with spray fixative. \r\nHandling Instructions for Offsite Areas:	Maintain and transport at room temperature. Place slides in cardboard slide holder for transport. ', '72 hours', 1200, '2018-09-20 21:25:56'),
+(2, 'AUTOPSY', 'Synonyms:	Post-mortem examination, Necropsy, Fetopsy \r\nSpecimen:	Cadaver, Products of Conception >20 weeks gestation \r\nContainer:	 \r\nVolume:	Whole body \r\nMinimum Volume:	 \r\nSpecimen Collection:	Consent required. \r\nHandling Instructions for Offsite Areas:	Transport body to Morgue. ', '72 hours', 3000, '2018-09-20 21:27:00'),
+(3, 'BONE MARROW BIOPSY TISSUE EXAMINATION', 'Specimen:	Bone Marrow Core \r\nContainer:	 \r\nVolume:	Entire bone marrow specimen \r\nMinimum Volume:	 \r\nSpecimen Collection:	Bone marrow core biopsy. \r\nHandling Instructions for Offsite Areas:	Place specimen in B Plus fixative, note time placed in fixative, transport to Pathology as soon as possible, room temperature. ', '72 hours', 3500, '2018-09-20 21:28:14');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users_info`
 --
 
@@ -151,6 +175,12 @@ ALTER TABLE `doctors`
   ADD PRIMARY KEY (`doctor_id`);
 
 --
+-- Indexes for table `pathology_test_info`
+--
+ALTER TABLE `pathology_test_info`
+  ADD PRIMARY KEY (`test_id`);
+
+--
 -- Indexes for table `users_info`
 --
 ALTER TABLE `users_info`
@@ -175,6 +205,11 @@ ALTER TABLE `appointments`
 --
 ALTER TABLE `doctors`
   MODIFY `doctor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `pathology_test_info`
+--
+ALTER TABLE `pathology_test_info`
+  MODIFY `test_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `users_info`
 --

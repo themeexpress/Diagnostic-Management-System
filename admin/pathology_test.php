@@ -41,12 +41,7 @@
                                     <td><?php echo $doctors['fullname']; ?></td>                                    </td>
                                     <td><?php echo $doctors['email_address']; ?></td>
                                     <td><img style="width:150px" src="uploads/<?php echo $doctors['profile_pic'];?>"></td>
-                                    <td><?php if($doctors['status']==1){
-                                    echo "Active" ;
-                                    }
-                                    else{
-                                        echo 'Not Active';
-                                    }?></td>
+                                    <td><?php echo $doctors['status']; ?></td>
                                     <td><button class="btn btn-primary" type="submit">Edit</button>  <button class="btn btn-danger" type="submit">Delete</button></td>
                                 </tr>
                                 <?php endforeach; ?> 
