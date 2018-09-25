@@ -65,7 +65,7 @@
                                                 <h4 class="modal-title">Appointment</h4>
                                             </div>
                                             <div class="modal-body">
-                                                <form class="client-registation" action="appointment_process.php" method="POST">
+                                                <form class="appointment" action="appointment_process.php" method="POST">
                                                     <div class="form-group">                                                                                                                                                                  
                                                             <input type="hidden" name="doctor_id" value="<?php echo $doctors['doctor_id']; ?>" />
                                                             <input type="hidden" name="user_id" value="<?php echo $user_id;?>" />
@@ -85,7 +85,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group col-sm-12">
-                                                        <input type="submit" name="submit" class="btn btn-primary submit-btn pull-right" value="Appointment">
+                                                        <input type="submit" name="appointment_submit" class="btn btn-primary submit-btn pull-right" value="Appointment">
                                                     </div>
                                                 </form>
                                             </div>

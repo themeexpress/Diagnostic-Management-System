@@ -33,6 +33,7 @@ include('../functions/function.php');
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
 
+
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -51,7 +52,7 @@ include('../functions/function.php');
     <a href="index2.html" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini">Diagnostic Admin</span>
-      <!-- logo for regular state and mobile devices -->      
+      <!-- logo for regular state and mobile devices -->
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -85,7 +86,7 @@ include('../functions/function.php');
                       <p>Why not buy a new awesome theme?</p>
                     </a>
                   </li>
-                  <!-- end message -->                
+                  <!-- end message -->
                 </ul>
               </li>
               <li class="footer"><a href="#">See All Messages</a></li>
@@ -98,7 +99,7 @@ include('../functions/function.php');
               <span class="label label-warning">10</span>
             </a>
             <ul class="dropdown-menu">
-              
+
               <li>
                 <!-- inner menu: contains the actual data -->
                 <ul class="menu">
@@ -112,7 +113,7 @@ include('../functions/function.php');
               <li class="footer"><a href="#">View all</a></li>
             </ul>
           </li>
-          <!-- Tasks: style can be found in dropdown.less -->         
+          <!-- Tasks: style can be found in dropdown.less -->
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -130,7 +131,7 @@ include('../functions/function.php');
                 </p>
               </li>
               <!-- Menu Body -->
-            
+
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
@@ -143,7 +144,7 @@ include('../functions/function.php');
             </ul>
           </li>
           <!-- Control Sidebar Toggle Button -->
-         
+
         </ul>
       </div>
     </nav>
@@ -200,7 +201,7 @@ include('../functions/function.php');
             <li><a href="pathology_test_order.php"><i class="fa fa-circle-o"></i>Pathology Test Order</a></li>
           </ul>
         </li>
-        
+
         <li class="active treeview">
           <a href="#">
             <i class="fa fa-edit"></i> <span>Appointments</span>
@@ -213,7 +214,7 @@ include('../functions/function.php');
             <li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i> Advanced Elements</a></li>
             <li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i> Editors</a></li>
           </ul>
-        </li>      
+        </li>
       </ul>
     </section>
     <!-- /.sidebar -->

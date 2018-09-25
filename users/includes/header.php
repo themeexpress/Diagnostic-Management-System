@@ -62,6 +62,7 @@ include '../functions/function.php'
             <!-- /.navbar-header -->
 
             <ul class="nav navbar-top-links navbar-right">
+                <li><a class="btn btn-primary" href="doctor_list.php">Make appointment</a></li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-envelope fa-fw"></i> <i class="fa fa-caret-down"></i>
@@ -142,7 +143,7 @@ include '../functions/function.php'
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="User Dashboard"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a href="user_dashboard.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>                       
                         <li>
                             <a href="doctor_list.php"><i class="fa fa-table fa-fw"></i>Doctor Lists</a>

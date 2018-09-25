@@ -81,6 +81,7 @@
 
 	<!-- js -->
 	<script type="text/javascript" src="frontend/js/jquery-2.1.4.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 	<script>
 		$('ul.dropdown-menu li').hover(function () {
 			$(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
