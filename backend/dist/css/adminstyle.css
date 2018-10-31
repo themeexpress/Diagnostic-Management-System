@@ -1,0 +1,15 @@
+/*login page wrapper*/
+
+.login-page {
+    background: url(../img/login-banner.jpg)!important;
+    overflow: hidden;
+}
+
+.custom-login {
+    width: 400px!important;
+    margin: 4% auto!important;
+}
+
+.la-padding {
+    padding: 15px 5px;
+}

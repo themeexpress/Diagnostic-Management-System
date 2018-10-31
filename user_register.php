@@ -33,7 +33,7 @@ if(!isset($_SESSION)){
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <body class="hold-transition register-page">
-<div class="register-box">
+<div class="register-box" style=" margin: 3% auto!important;">
   <div class="register-logo">
     <a href="user_register.php"><img src="img/logo.png"></a>
   </div>
@@ -44,7 +44,6 @@ if(!isset($_SESSION)){
       <?php unset($_SESSION["msg"]); endif;?>
 
     <p class="login-box-msg">Register a new membership</p>
-
     <form action="register_process.php" method="post">
       <div class="form-group has-feedback">
         <input type="text" class="form-control" name="fullname" placeholder="Full name" require>
@@ -53,6 +52,10 @@ if(!isset($_SESSION)){
       <div class="form-group has-feedback">
         <input type="text" class="form-control" name="phone" placeholder="Phone Number" require>
         <span class="glyphicon glyphicon-earphone form-control-feedback"></span>
+      </div>
+      <div class="form-group has-feedback">
+        <input type="number" class="form-control" name="age" placeholder="Your Age" require>
+        <span class="glyphicon glyphicon-user form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
         <input type="email" class="form-control" name="email" placeholder="Email" require>

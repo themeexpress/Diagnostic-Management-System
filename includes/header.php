@@ -38,7 +38,7 @@
 			<div class="header_right">
 				<ul class="forms_right">
 					<li><a href="login.php"> Make an Appointment</a></li>
-					<li><a href="login.php"> My Account</a> </li>
+					<li><a href="login.php">Login / Register </a> </li>
 				</ul>
 
 			</div>
@@ -64,7 +64,7 @@
 						<nav>
 							<ul class="nav navbar-nav">
 								<li><a href="index.php" class="active">Home</a></li>
-								<li><a href="doctor_list.php">Doctors</a></li>
+								<li><a href="doctor_list.php">Doctors</a></li>							
 								
 								<li><a href="departments.html">Departments</a></li>
 								<li><a href="gallery.html">Gallery</a></li>

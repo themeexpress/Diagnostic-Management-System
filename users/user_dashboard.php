@@ -204,4 +204,4 @@
             <!-- /.row -->
         </div>
         <!-- /#page-wrapper -->
-        <?php includes('includes/footer.php')?>
+        <?php include('includes/footer.php')?>

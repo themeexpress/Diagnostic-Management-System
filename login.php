@@ -10,16 +10,15 @@ session_start();
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
-  <link rel="stylesheet" href="admin/bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="backend/bower_components/bootstrap/dist/css/bootstrap.min.css">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="admin/bower_components/font-awesome/css/font-awesome.min.css">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="admin/bower_components/Ionicons/css/ionicons.min.css">
+  <link rel="stylesheet" href="backend/bower_components/font-awesome/css/font-awesome.min.css">
+  
   <!-- Theme style -->
-  <link rel="stylesheet" href="admin/dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="backend/dist/css/AdminLTE.min.css">
   <!-- iCheck -->
-  <link rel="stylesheet" href="admin/plugins/iCheck/square/blue.css">
-  <link rel="stylesheet" href="admin/dist/css/adminstyle.css">
+  
+  <link rel="stylesheet" href="backend/dist/css/adminstyle.css">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -57,20 +56,17 @@ session_start();
         <input type="password" class="form-control" name="password" placeholder="Password" required>
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
-      <div class="row">
-        <div class="col-xs-8">
-          <div class="checkbox icheck">
-            <label>
-              <input type="checkbox"> Remember Me
-            </label>
-          </div>
-        </div>
-        <!-- /.col -->
-        <div class="col-xs-4">
-          <button type="submit" class="btn btn-primary btn-block btn-flat" name="user_login">Sign In</button>
-        </div>
-        <!-- /.col -->
+
+      <div class="from-group text-center">
+        <label style="padding:5px 20px;"><input type="radio" name="user_role" checked value="1" required> As Patient</label>
+        <label><input type="radio" name="user_role" value="2" required> As Manager</label>
       </div>
+           
+      <div class="social-auth-links text-center">
+          <button type="submit" class="btn btn-block btn-social btn-facebook btn-flat" name="user_login"> <i class="fa fa-user-plus"></i>Have Account ? Sign In</button>
+      </div>
+        <!-- /.col -->
+      
     </form>
 
     <div class="social-auth-links text-center">
@@ -87,19 +83,11 @@ session_start();
 <!-- /.login-box -->
 
 <!-- jQuery 3 -->
-<script src="admin/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="backend/bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
-<script src="admin/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="backend/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- iCheck -->
-<script src="admin/plugins/iCheck/icheck.min.js"></script>
-<script>
-  $(function () {
-    $('input').iCheck({
-      checkboxClass: 'icheckbox_square-blue',
-      radioClass: 'iradio_square-blue',
-      increaseArea: '20%' /* optional */
-    });
-  });
-</script>
+<script src="backend/plugins/iCheck/icheck.min.js"></script>
+
 </body>
 </html>

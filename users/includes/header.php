@@ -1,22 +1,26 @@
 <?php
 session_start();
+include '../functions/function.php';
 $user_name=$_SESSION['fullname'];
 $phone = $_SESSION['phone'];
 $user_id=$_SESSION['user_id'];
-include '../functions/function.php'
+$user_role=$_SESSION['user_role']
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>User Dashboard- Dignostic Management System</title>
+    <title><?php if($user_role==1){
+        echo 'Patient Dashboard- Dignostic Management System';
+    }else{
+        echo 'Manager Dashboard- Dignostic Management System';
+    }?></title>
     <!-- Bootstrap Core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -57,12 +61,20 @@ include '../functions/function.php'
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="user_dashboard.php"><?php echo $user_name; ?></a>
+                <div class="userarea" style="padding: 16px;">
+                <span style="color: #337ab7;font-weight: 700;border: 1px solid #337ab7;padding: 10px;"><?php echo $user_name; ?></span>
+                <span style="color:#5cb85c;padding-left:5px;"><?php if($user_role==1){
+                        echo 'Patient Dashboard';
+                    }else{
+                        echo 'Manager Dashboard';
+                    }?></span>
+                </div>
+                
             </div>
             <!-- /.navbar-header -->
 
-            <ul class="nav navbar-top-links navbar-right">
-                <li><a class="btn btn-primary" href="doctor_list.php">Make appointment</a></li>
+            <ul class="nav navbar-top-links navbar-right">                
+                <li><a class="btn btn-primary appointment" href="manager_doc_apt.php">Make appointment</a></li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-envelope fa-fw"></i> <i class="fa fa-caret-down"></i>
@@ -130,6 +142,30 @@ include '../functions/function.php'
 
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
+                <?php $userLoggedInOrNot=patientOrManagerLoggedin($_SESSION['user_id']);
+                if($userLoggedInOrNot['user_role']==2){?>
+                    <ul class="nav" id="side-menu">
+                        <li class="sidebar-search">
+                            <div class="input-group custom-search-form">
+                                <input type="text" class="form-control" placeholder="Search...">
+                                
+                                <button class="btn btn-default" type="button">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                            </div>                            
+                        </li>
+                        <li>
+                            <a href="manager_dashboard.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        </li>                       
+                        <li>
+                            <a href="doctor_list_manage.php"><i class="fa fa-table fa-fw"></i> Doctor Lists</a>
+                        </li>
+                        <li>
+                            <a href="appoint_history.php"><i class="fa fa-table fa-fw"></i> Appoint History</a>
+                        </li>               
+                    </ul>
+                <?php }else{?>
                     <ul class="nav" id="side-menu">
                         <li class="sidebar-search">
                             <div class="input-group custom-search-form">
@@ -140,30 +176,21 @@ include '../functions/function.php'
                                 </button>
                             </span>
                             </div>
-                            <!-- /input-group -->
+                            
                         </li>
                         <li>
                             <a href="user_dashboard.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>                       
                         <li>
-                            <a href="doctor_list.php"><i class="fa fa-table fa-fw"></i>Doctor Lists</a>
+                            <a href="doctor_list.php"><i class="fa fa-table fa-fw"></i> Doctor Lists</a>
                         </li>
                         <li>
-                            <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Forms</a>
-                        </li>                        
-                        <li>
-                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="#">Second Level Item</a>
-                                </li>
-                                <li>
-                                    <a href="#">Second Level Item</a>
-                                </li>                               
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>                      
+                            <a href="appoint_history.php"><i class="fa fa-table fa-fw"></i> Appoint History</a>
+                        </li>               
                     </ul>
+
+                <?php } ?>
+
                 </div>
                 <!-- /.sidebar-collapse -->
             </div>
